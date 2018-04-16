@@ -5,14 +5,61 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
+@Controller
+public class HomeController {
 
+@Autowired
+PersonRepository personRepo;
+
+@RequestMapping("/")
+public String showIndex(Model model)
+{
+model.addAttribute("people", personRepo.findAll());
+return "index";
+}
+
+@GetMapping("/add")
+public String addPerson(Model model)
+{
+model.addAttribute("aPerson", new Person());
+return "addperson";
+}
+
+
+@PostMapping("/saveperson")
+public String savePerson(@Valid @ModelAttribute("person") Person person, BindingResult result)
+{
+if(result.hasErrors())
+{
+return "addperson";
+}
+//have to make sure we are checking it as well
+// this person is the lower case of Person person
+personRepo.save(person);
+return "redirect:/";
+}
+
+@RequestMapping("/update/{id}")
+    public String updatePerson(@PathVariable("id") long id, Model model)
+{
+    //trying to find an individual object by the number used to identify it
+    model.addAttribute("aPerson", personRepo.findById(id));
+    return "addperson";
+}
+
+}
+
+
+
+
+
+
+
+/*
 //Originally put @Entity below - this is not @Entity
 @Controller
 public class HomeController {
@@ -33,6 +80,17 @@ public class HomeController {
         return "addPerson";
     }
 
+
+    /*
+    @GetMapping("/show")
+    public String showPerson (Model model) {
+        model.addAttribute("aPerson", new Person());
+        return "index";
+        }
+
+        */
+
+/*
     @PostMapping("/saveperson")
       public String savePerson(@Valid @ModelAttribute("aPerson") Person person, BindingResult result)
     {
@@ -50,6 +108,8 @@ public class HomeController {
     }
 
 }
+
+*/
 
 /*
 @PostMapping("/savebook")

@@ -9,12 +9,26 @@
 <!--  You initially put <a href="text"> below, which is incorrect, unfortunately -->
 <a href="/add">Add a person</a>
 
+<!-- <a href="/show">Show a list of people</a> -->
+
 <!--List the items in the Person table. The individual item to iterate through is called eachPerson, and the list of items is called persons-->
-<div th:each="eachPerson:${personList}">
+
+<!-- <div th:each="eachPerson:${personList}">
     <p th:text="${eachPerson.firstName}"></p>
     <p th:text="${eachPerson.lastName}"></p>
     <p th:text="${eachPerson.emailAddress}"></p>
     <p th:text="${eachPerson.phoneNumber}"></p>
+-->
+
+<div th:each="aPerson:${people}">
+    <!-- change from < p th:text to <span th:text -->
+
+<span th:text="${aPerson.firstName}"></span>
+<span th:text="${aPerson.lastName}"></span>
+<span th:text="${aPerson.emailAddress}"></span>
+<span th:text="${aPerson.phoneNumber}"></span>
+    <!-- we need a th to know it is a thymeleaf route  -->
+    <span><a th:href="@{/update/{id}(id=${aPerson.id})}">Update</a></span>
 </div>
 </body>
 </html>

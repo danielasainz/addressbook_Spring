@@ -15,6 +15,11 @@ public class Person {
     @GeneratedValue( strategy = GenerationType.AUTO)
     private long id;
 
+    //@NotEmpty for Strings
+    //@NotNull for integers
+    //@Size (min, max)
+    //@Range (min, max)
+    
     @NotEmpty
     @Size(max=20)
     private String firstName;
