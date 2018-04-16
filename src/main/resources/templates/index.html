@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>List people</title>
+</head>
+<body>
+<h1>This is a list of people</h1>
+<!--  You initially put <a href="text"> below, which is incorrect, unfortunately -->
+<a href="/add">Add a person</a>
+
+<!--List the items in the Person table. The individual item to iterate through is called eachPerson, and the list of items is called persons-->
+<div th:each="eachPerson:${personList}">
+    <p th:text="${eachPerson.firstName}"></p>
+    <p th:text="${eachPerson.lastName}"></p>
+    <p th:text="${eachPerson.emailAddress}"></p>
+    <p th:text="${eachPerson.phoneNumber}"></p>
+</div>
+</body>
+</html>
