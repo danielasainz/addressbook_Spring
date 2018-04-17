@@ -19,7 +19,7 @@ public class Person {
     //@NotNull for integers
     //@Size (min, max)
     //@Range (min, max)
-    
+
     @NotEmpty
     @Size(max=20)
     private String firstName;

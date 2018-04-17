@@ -41,16 +41,28 @@ return "addperson";
 // this person is the lower case of Person person
 personRepo.save(person);
 return "redirect:/";
+
 }
+
+   // @RequestMapping("/delete/{id}")
+    //public String deletePerson(@PathVariable("id") long id, Model model)
 
 @RequestMapping("/update/{id}")
     public String updatePerson(@PathVariable("id") long id, Model model)
+
 {
+
     //trying to find an individual object by the number used to identify it
     model.addAttribute("aPerson", personRepo.findById(id));
     return "addperson";
 }
 
+
+        @RequestMapping("/delete/{id}")
+        public String deletePerson ( @PathVariable("id") long id){
+             personRepo.deleteById(id);
+             return "redirect:/";
+        }
 }
 
 

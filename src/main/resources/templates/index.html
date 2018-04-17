@@ -29,6 +29,7 @@
 <span th:text="${aPerson.phoneNumber}"></span>
     <!-- we need a th to know it is a thymeleaf route  -->
     <span><a th:href="@{/update/{id}(id=${aPerson.id})}">Update</a></span>
+    <span><a th:href="@{/delete/{id}(id=${aPerson.id})}">Delete</a></span>
 </div>
 </body>
 </html>
