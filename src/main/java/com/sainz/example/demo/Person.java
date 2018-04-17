@@ -12,6 +12,7 @@ import javax.validation.constraints.Size;
 @Entity
 public class Person {
     @Id
+    //below means this id will be generated automatically for a Person everytime a person is created, id is generated
     @GeneratedValue( strategy = GenerationType.AUTO)
     private long id;
 

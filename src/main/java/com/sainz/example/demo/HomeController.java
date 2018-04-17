@@ -44,19 +44,16 @@ return "redirect:/";
 
 }
 
-   // @RequestMapping("/delete/{id}")
-    //public String deletePerson(@PathVariable("id") long id, Model model)
-
 @RequestMapping("/update/{id}")
+//name of a java method that returns a string (updatePerson) - doesn't matter what you name it
     public String updatePerson(@PathVariable("id") long id, Model model)
-
 {
-
     //trying to find an individual object by the number used to identify it
+    //addAttribute called "aPerson", from what connects it with the database(personRepo) you find something with a given id (in PathVariable)
+    //I called my model "aPerson"  and in my addPerson HTML page it is a variable
     model.addAttribute("aPerson", personRepo.findById(id));
     return "addperson";
 }
-
 
         @RequestMapping("/delete/{id}")
         public String deletePerson ( @PathVariable("id") long id){
